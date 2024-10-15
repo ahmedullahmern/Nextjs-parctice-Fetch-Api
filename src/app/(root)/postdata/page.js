@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+
 export default async function post() {
     let res = await fetch('https://dummyjson.com/posts');
     res = await res.json();
@@ -6,10 +9,12 @@ export default async function post() {
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-wrap -m-4">
+
                     {
                         res.posts.map((data) => (
-                            <div className="p-4 lg:w-1/3" key={data.id}>
-                                <div className="bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                            // <Link key={data.id} href={`/postdata/${data.id}`}>
+                            <Link key={data.id} href={`/postdata/${data.id}`} className="p-4 lg:w-1/3">
+                                <div className="bg-gray-100 hover:bg-gray-200 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                                     <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
                                         {data.title}
                                     </h1>
@@ -55,7 +60,8 @@ export default async function post() {
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
+                            // </Link>
                         ))
                     }
                 </div>
